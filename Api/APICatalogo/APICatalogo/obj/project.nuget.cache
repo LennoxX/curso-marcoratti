@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fcDrafQI3w5wr00CBvmtdS4hxNQSjfzVKzgk5FXXw6849g9TOi2kRl+EmHjdJ9olq+QBZ8ky1ozFKHzWjbLYUw==",
+  "dgSpecHash": "zdmeTHT+mPwuhzYmjl7SVkJpql4c98CKFxe+Gm+jESLK3ANB/Bf/iyHJewDN9lBeb2Y5dPjCrOBIuVCGELHf5g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lucas\\Documents\\Projetos Off\\APICatalogo\\APICatalogo\\APICatalogo.csproj",
+  "projectFilePath": "C:\\Users\\Lucas\\Documents\\Projetos Off\\Curso Macoratti\\Api\\APICatalogo\\APICatalogo\\APICatalogo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",

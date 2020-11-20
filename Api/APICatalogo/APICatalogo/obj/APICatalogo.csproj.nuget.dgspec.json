@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lucas\\Documents\\Projetos Off\\APICatalogo\\APICatalogo\\APICatalogo.csproj": {}
+    "C:\\Users\\Lucas\\Documents\\Projetos Off\\Curso Macoratti\\Api\\APICatalogo\\APICatalogo\\APICatalogo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lucas\\Documents\\Projetos Off\\APICatalogo\\APICatalogo\\APICatalogo.csproj": {
+    "C:\\Users\\Lucas\\Documents\\Projetos Off\\Curso Macoratti\\Api\\APICatalogo\\APICatalogo\\APICatalogo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lucas\\Documents\\Projetos Off\\APICatalogo\\APICatalogo\\APICatalogo.csproj",
+        "projectUniqueName": "C:\\Users\\Lucas\\Documents\\Projetos Off\\Curso Macoratti\\Api\\APICatalogo\\APICatalogo\\APICatalogo.csproj",
         "projectName": "APICatalogo",
-        "projectPath": "C:\\Users\\Lucas\\Documents\\Projetos Off\\APICatalogo\\APICatalogo\\APICatalogo.csproj",
+        "projectPath": "C:\\Users\\Lucas\\Documents\\Projetos Off\\Curso Macoratti\\Api\\APICatalogo\\APICatalogo\\APICatalogo.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lucas\\Documents\\Projetos Off\\APICatalogo\\APICatalogo\\obj\\",
+        "outputPath": "C:\\Users\\Lucas\\Documents\\Projetos Off\\Curso Macoratti\\Api\\APICatalogo\\APICatalogo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",

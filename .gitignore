@@ -44,3 +44,7 @@ speed-measure-plugin*.json
 # System Files
 /App/catalogo-app/.DS_Store
 /App/catalogo-app/Thumbs.db
+
+
+# API Folders
+/API/APICatalogo/APICatalogo/bin
