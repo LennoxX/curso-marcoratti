@@ -18,22 +18,19 @@
     <div class="card card-outline card-purple elevation-2">
         <div class="card-body">
 
-            <p-table [value]="resources" [paginator]="true" [rows]="10" [totalRecords]="resources.length"
+            <p-table [value]="resources" class="table table-hover table-condensed" [paginator]="true" [rows]="10" [totalRecords]="resources.length"
                 [loading]="loading">
                 <ng-template pTemplate="header">
-                    <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>Company</th>
-                        <th>Representative</th>
+                    <tr class="d-flex">
+                        <th class="col-sm-8">Nome</th>
+                        <th class="col-sm-4">Ações</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-customer>
-                    <tr>
-                        <td>{{customer.name}}</td>
-                        <td>{{customer.country.name}}</td>
-                        <td>{{customer.company}}</td>
-                        <td>{{customer.representative.name}}</td>
+                <ng-template pTemplate="body" let-resource>
+                    <tr class="d-flex">
+                        <td class="col-sm-8">{{resource.nome}}</td>
+                        
+                       <td class="col-sm-4"></td>
                     </tr>
                 </ng-template>
             </p-table>
