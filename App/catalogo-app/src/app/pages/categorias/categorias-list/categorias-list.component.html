@@ -30,7 +30,13 @@
                     <tr class="d-flex">
                         <td class="col-sm-8">{{resource.nome}}</td>
                         
-                       <td class="col-sm-4"></td>
+                       <td class="col-sm-4">
+                            <a [routerLink]="[resource.id]" pTooltip="Editar" tooltipPosition="top"
+                                class="btn btn-info btn-sm mr-1"><i class="fa fa-search"></i></a>
+                            <button pTooltip="Editar" tooltipPosition="top"
+                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                     
+                       </td>
                     </tr>
                 </ng-template>
             </p-table>

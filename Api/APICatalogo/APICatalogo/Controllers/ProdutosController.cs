@@ -26,7 +26,7 @@ namespace APICatalogo.Controllers
         {
             try
             {
-                return Ok(_context.Produtos.AsNoTracking().ToList());
+                return Ok(_context.Produtos.AsNoTracking().Include(p => p.Categoria).ToList());
             }
             catch (Exception)
             {
@@ -40,7 +40,7 @@ namespace APICatalogo.Controllers
         {
             try
             {
-                var produto = _context.Produtos.AsNoTracking().FirstOrDefault(p => p.Id == id);
+                var produto = _context.Produtos.AsNoTracking().Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
                 if (produto == null)
                 {
                     return NotFound("Produto não encontrado");
@@ -59,6 +59,7 @@ namespace APICatalogo.Controllers
         {
             try
             {
+                produto.DataCadastro = System.DateTime.Now;
                 _context.Produtos.Add(produto);
                 _context.SaveChanges();
                 return CreatedAtRoute("ObterProduto", new { id = produto.Id }, produto);

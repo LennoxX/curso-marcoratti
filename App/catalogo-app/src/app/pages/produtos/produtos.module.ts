@@ -4,14 +4,18 @@ import { CommonModule } from '@angular/common';
 
 import { ProdutosRoutingModule } from './produtos-routing.module';
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
+import { ProdutosFormComponent } from './produtos-form/produtos-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ProdutosListComponent],
+  declarations: [ProdutosListComponent, ProdutosFormComponent],
   imports: [
     CommonModule,
     ProdutosRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProdutosModule { }

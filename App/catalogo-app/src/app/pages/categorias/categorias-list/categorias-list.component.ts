@@ -1,5 +1,5 @@
 import { BaseListComponent } from './../../../shared/components/base-list/base-list.component';
-import { CategoriaService } from './../services/categoria.service';
+import { CategoriaService } from '../services/categorias.service';
 import { Component, OnInit, Injector } from '@angular/core';
 import { Categoria } from '../models/categoria.model';
 
@@ -10,8 +10,6 @@ import { Categoria } from '../models/categoria.model';
 })
 export class CategoriasListComponent extends BaseListComponent<Categoria> {
 
-  resources = new Array();
-  loading: boolean;
 
   constructor(protected categoriaService:CategoriaService, protected injector:Injector) {
     super(categoriaService, injector);

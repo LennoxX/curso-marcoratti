@@ -1,18 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { BaseListComponent } from './../../../shared/components/base-list/base-list.component';
+import { Produto } from './../models/produto.model';
+import { ProdutoService } from './../services/produtos.service';
+import { Component, OnInit, Injector } from '@angular/core';
 
 @Component({
   selector: 'app-produtos-list',
   templateUrl: './produtos-list.component.html',
   styleUrls: ['./produtos-list.component.css']
 })
-export class ProdutosListComponent implements OnInit {
+export class ProdutosListComponent extends BaseListComponent<Produto>  {
 
-  resources = new Array();
-  loading: boolean = true;
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(protected produtoService: ProdutoService, protected injector: Injector) {
+    super(produtoService, injector);
   }
+
+
+
 
 }

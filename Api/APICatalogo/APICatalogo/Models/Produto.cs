@@ -20,15 +20,18 @@ namespace APICatalogo.Models
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Campo 'Preço' obrigatório")]
+        [Range(0,float.MaxValue, ErrorMessage= "O campo 'Preço' precisa ser maior que {1} e menor que {2}")]
         public decimal Preco { get; set; }
 
         [Required(ErrorMessage = "Campo 'Imagem URL' obrigatório")]
         public string ImagemUrl { get; set; }
 
+        [Range(0,float.MaxValue, ErrorMessage= "O campo 'Estoque' precisa ser maior que {1} e menor que {2}")]
         public float Estoque { get; set; }
-
+        
         public DateTime DataCadastro { get; set; }
 
+        [Required(ErrorMessage = "Campo 'Categoria' obrigatório")]
         public Categoria Categoria { get; set; }
 
         public int CategoriaId { get; set; }

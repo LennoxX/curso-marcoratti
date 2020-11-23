@@ -21,19 +21,28 @@
             <p-table [value]="resources" [paginator]="true" [rows]="10" [totalRecords]="resources.length"
                 [loading]="loading">
                 <ng-template pTemplate="header">
-                    <tr>
-                        <th>Name</th>
-                        <th>Country</th>
-                        <th>Company</th>
-                        <th>Representative</th>
+                    <tr class="d-flex">
+                        <th class="col-sm-2">Nome</th>
+                        <th class="col-sm-3">Descrição</th>
+                        <th class="col-sm-1">Preço</th>
+                        <th class="col-sm-2">Estoque</th>
+                        <th class="col-sm-2">Categoria</th>
+                        <th class="col-sm-2">Ações</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-customer>
-                    <tr>
-                        <td>{{customer.name}}</td>
-                        <td>{{customer.country.name}}</td>
-                        <td>{{customer.company}}</td>
-                        <td>{{customer.representative.name}}</td>
+                <ng-template pTemplate="body" let-resource>
+                    <tr  class="d-flex">
+                        <td class="col-sm-2">{{resource.nome}}</td>
+                        <td class="col-sm-3">{{resource.descricao}}</td>
+                        <td class="col-sm-1">{{resource.preco | currency:'BRL':'symbol'}}</td>
+                        <td class="col-sm-2">{{resource.estoque}}</td>
+                        <td class="col-sm-2">{{resource.categoria?.nome}}</td>
+                        <td class="col-sm-2">
+                            <a [routerLink]="[resource.id]" pTooltip="Editar" tooltipPosition="top"
+                            class="btn btn-info btn-sm mr-1"><i class="fa fa-search"></i></a>
+                        <button pTooltip="Editar" tooltipPosition="top"
+                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
