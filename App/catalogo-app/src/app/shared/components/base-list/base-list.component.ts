@@ -29,10 +29,8 @@ export class BaseListComponent<T extends BaseResourceModel> implements OnInit {
     this.loading = true;
     this.resourceService.getAll().subscribe((res)=>{
       this.resources = res;
-      console.log(res)
       this.loading = false;
     }, (err) => {
-      console.log(err);
       this.actionsForError(err);
       this.loading = false;
     })

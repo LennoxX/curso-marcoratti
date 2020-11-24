@@ -33,7 +33,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
 
 
 @NgModule({
-  declarations: [NavComponent, MenuComponent, FooterComponent, BaseFormComponent, BaseListComponent],
+  declarations: [NavComponent, MenuComponent, FooterComponent, BaseListComponent],
   imports: [
     CommonModule,
     RouterModule,
