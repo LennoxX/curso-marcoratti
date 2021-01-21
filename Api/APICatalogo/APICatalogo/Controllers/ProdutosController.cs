@@ -1,12 +1,10 @@
-﻿using APICatalogo.Context;
-using APICatalogo.Models;
+﻿using APICatalogo.Models;
+using APICatalogo.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace APICatalogo.Controllers
 {
@@ -14,11 +12,11 @@ namespace APICatalogo.Controllers
     [Route("api/[Controller]")]
     public class ProdutosController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IUnitOfWork _uof;
 
-        public ProdutosController(AppDbContext context)
+        public ProdutosController(IUnitOfWork context)
         {
-            _context = context;
+            _uof = context;
         }
 
         [HttpGet]
@@ -26,7 +24,7 @@ namespace APICatalogo.Controllers
         {
             try
             {
-                return Ok(_context.Produtos.AsNoTracking().Include(p => p.Categoria).ToList());
+                return Ok(_uof.ProdutoRepository.Get().ToList());
             }
             catch (Exception)
             {
@@ -35,12 +33,22 @@ namespace APICatalogo.Controllers
            
         }
 
+        [HttpGet("paged")]
+        public ActionResult<IEnumerable<Produto>> GetPaginado([FromQuery] int pageNumber, [FromQuery] int pageSize)
+        {
+            var page = pageNumber > 0 ? pageNumber : 1;
+            var size = pageSize > 0 && pageSize <10 ? pageSize : 10;
+
+            return _uof.ProdutoRepository.Get().OrderBy(p => p.Nome).Skip((page - 1) * size).Take(size).ToList();
+
+        }
+
         [HttpGet("{id}", Name ="ObterProduto")]
         public ActionResult<Produto> Get(int id)
         {
             try
             {
-                var produto = _context.Produtos.AsNoTracking().Include(p => p.Categoria).FirstOrDefault(p => p.Id == id);
+                var produto = _uof.ProdutoRepository.GetById(p => p.Id == id);
                 if (produto == null)
                 {
                     return NotFound("Produto não encontrado");
@@ -60,8 +68,8 @@ namespace APICatalogo.Controllers
             try
             {
                 produto.DataCadastro = System.DateTime.Now;
-                _context.Produtos.Add(produto);
-                _context.SaveChanges();
+                _uof.ProdutoRepository.Add(produto);
+                _uof.Commit();
                 return CreatedAtRoute("ObterProduto", new { id = produto.Id }, produto);
             }
             catch (Exception)
@@ -76,9 +84,9 @@ namespace APICatalogo.Controllers
         {
             try
             {
-                _context.Entry(produto).State = EntityState.Modified;
-                _context.SaveChanges();
-                return Ok(_context.Produtos.AsNoTracking().FirstOrDefault(p => p.Id == produto.Id));
+                _uof.ProdutoRepository.Update(produto);
+                _uof.Commit();
+                return Ok(_uof.ProdutoRepository.GetById(p => p.Id == produto.Id));
             }
             catch (Exception)
             {
@@ -92,13 +100,13 @@ namespace APICatalogo.Controllers
         {
             try
             {
-                var produto = _context.Produtos.AsNoTracking().FirstOrDefault(p => p.Id == id);
+                var produto = _uof.ProdutoRepository.GetById(p => p.Id == id);
                 if (produto == null)
                 {
                     return NotFound();
                 }
-                _context.Produtos.Remove(produto);
-                _context.SaveChanges();
+                _uof.ProdutoRepository.Delete(produto);
+                _uof.Commit();
                 return Ok();
             }
             catch (Exception)

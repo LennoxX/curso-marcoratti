@@ -6,6 +6,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { BaseResourceModel } from '../models/base-resource.model';
 import { environment } from 'src/environments/environment';
+import { Page } from '../models/page.model';
+import { Response } from '../models/response.model';
 
 
 export abstract class BaseResourceService<T extends BaseResourceModel> {
@@ -25,6 +27,15 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     );
   }
 
+  findAll(page: number, count: number): Observable<Page<T>> {
+    const url = `${this.API_PATH}/paged?pageNumber=${page}&pageSize=${count}`;
+    return this.http.get(url).pipe(
+      catchError(this.handleError),
+      map(this.jsonDataPagesToResources)
+    );
+  }
+
+  abstract findAllByParameters(page: number, count: number, filters?: Map<any, any>, sort?: Map<any,any>);
  
 
   findById(id: number): Observable<T> {
@@ -61,20 +72,20 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
 
   // Metodos Protegidos
 
-  protected jsonDataToResources(jsonData: T[]): T[] {
+  protected jsonDataToResources(jsonData: any): T[] {
     const resources: T[] = [];
-    jsonData.forEach(element => resources.push(element as T));
+    jsonData.data.forEach(element => resources.push(element as T));
     return resources;
   }
 
   protected jsonDataToResource(jsonData: T): T {
     return jsonData as T;
   }
-/* 
-  protected jsonDataPagesToResources(jsonData: Response<Page<T>>): Page<T> {
-    const resources = Object.assign(new Response(), jsonData.data);
+
+  protected jsonDataPagesToResources(jsonData: Page<T>): Page<T> {
+    const resources = Object.assign(new Page<T>(), jsonData);
     return resources;
-  } */
+  } 
 
   protected handleError(error): Observable<any> {
     console.log('ERRO NA REQUISIÇÃO', error);

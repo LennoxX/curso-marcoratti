@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { BaseListComponent } from './../../../shared/components/base-list/base-list.component';
 import { Produto } from './../models/produto.model';
 import { ProdutoService } from './../services/produtos.service';
@@ -12,8 +13,8 @@ export class ProdutosListComponent extends BaseListComponent<Produto>  {
 
 
 
-  constructor(protected produtoService: ProdutoService, protected injector: Injector) {
-    super(produtoService, injector);
+  constructor(protected produtoService: ProdutoService, protected injector: Injector, protected router: Router) {
+    super(produtoService,router, injector);
   }
 
 

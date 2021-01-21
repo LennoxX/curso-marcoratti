@@ -1,4 +1,5 @@
 using APICatalogo.Context;
+using APICatalogo.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,15 +30,15 @@ namespace APICatalogo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
-        {
-            options.AddPolicy(name: "MyAllowSpecificOrigins",
+            {
+                options.AddPolicy(name: "MyAllowSpecificOrigins",
                               builder =>
                               {
                                   builder.WithOrigins("http://localhost:4200")
                                   .AllowAnyMethod()
                                   .AllowAnyHeader();
                               });
-        });
+            });
 
 
             services.AddDbContext<AppDbContext>(options =>
@@ -45,7 +46,10 @@ namespace APICatalogo
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddControllers().AddNewtonsoftJson(options => {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
@@ -69,7 +73,7 @@ namespace APICatalogo
 
 
             app.UseRouting();
-            
+
             app.UseCors("MyAllowSpecificOrigins");
 
             app.UseAuthorization();

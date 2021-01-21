@@ -30,10 +30,10 @@ namespace APICatalogo.Models
         public float Estoque { get; set; }
         
         public DateTime DataCadastro { get; set; }
-
-        [Required(ErrorMessage = "Campo 'Categoria' obrigatório")]
+        
         public Categoria Categoria { get; set; }
 
+        [Required(ErrorMessage = "Campo 'Categoria' obrigatório")]
         public int CategoriaId { get; set; }
 
 

@@ -1,0 +1,52 @@
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">{{pageTitle}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/clientes">Clientes</a></li>
+                    <li class="breadcrumb-item">Formulário</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card card-outline card-purple elevation-2">
+        <form (keydown.enter)="$event.preventDefault()" [formGroup]="resourceForm">
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label>Nome</label>
+                        <input formControlName="nome" class="form-control text-capitalize">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Sobrenome</label>
+                        <input formControlName="sobrenome" class="form-control text-capitalize">
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Email</label>
+                        <input class="form-control" formControlName="email" />
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Ativo</label><br/>
+                        <p-checkbox type="checkbox" class="p-checkbox" name="groupname" binary="true" formControlName="ativo"></p-checkbox>
+
+                    </div>
+                </div>
+               
+                <button (click)="confirm()" [disabled]="submittingForm || resourceForm.invalid" class="btn btn-lg btn-success float-right">Salvar</button>                
+            </div>
+        </form>
+        <div *ngIf="loading" class="overlay">
+            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+        </div>
+        <div *ngIf="loading">
+            <p-progressBar mode="indeterminate"></p-progressBar>
+        </div>
+    </div>
+</div>

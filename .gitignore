@@ -48,3 +48,4 @@ speed-measure-plugin*.json
 
 # API Folders
 /Api/APICatalogo/APICatalogo/bin
+/API/APICatalogo/APICatalogo/obj

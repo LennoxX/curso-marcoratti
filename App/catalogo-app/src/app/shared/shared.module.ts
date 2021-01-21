@@ -18,6 +18,8 @@ import {InputMaskModule} from 'primeng/inputmask';
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from "ng2-currency-mask";
 import {InputNumberModule} from 'primeng/inputnumber';
 import {DropdownModule} from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 
 
@@ -44,7 +46,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     InputMaskModule,
     CurrencyMaskModule,
     InputNumberModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ],
   exports:[
     NavComponent,
@@ -58,7 +61,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     InputMaskModule,
     CurrencyMaskModule,
     InputNumberModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule
   ],
   providers: [
     { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
